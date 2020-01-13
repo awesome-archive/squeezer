@@ -1,4 +1,4 @@
-<a href="https://squeezer.io" target="_blank"><img width="700" height="auto" src="./readme-intro.gif"></a>
+<a href="https://squeezer.io" target="_blank"><img width="700" height="auto" src="./readme-introduction.gif"></a>
 
 #### Framework : [squeezer.io](https://squeezer.io)
 #### Docs : [docs.squeezer.io](https://docs.squeezer.io/)
@@ -13,6 +13,7 @@
 * [Getting Started](#getting-started)
 * [Example Projects](#example-projects)
 * [Features](#features)
+* [Roadmap](#roadmap)
 * [Templates](#templates)
 * [Plugins](#plugins)
 * [Contributing](#contributing)
@@ -32,8 +33,9 @@ The main usage of the ChainKit is to unify top blockchains interfaces into a sin
 
 - create blockchain wallets
 - double-encrypt for wallet data
+- on-the-fly encryption/decryption
 - user choose how to store wallet token
-- bi-directional blockchain transactions (inbound and outbound)
+- bi-directional onchain transactions (inbound and outbound)
 - create blockchain payment solution
 - build dApps connecting to smart contracts using chainkit agnostic connector
 - deploy smart contracts
@@ -53,6 +55,12 @@ where code changed from the last deployment
 - pay only for the usage ( no monthly subscriptions )
 - [Swagger UI](http://swagger.io/) API documentation support
 
+### <a name="roadmap"></a>Roadmap
+
+- decentralize microservices, currently we are using cloud microservices, AWS Lambda, Azure Functions ... we need to get rid of it and store and access the microservices in a decentralized way, IPFS and Ethereum Swarm could be an option
+- add 2FA and other security options when  using ChainKit `sendTransaction` which is used on withdraws, transfer and other sensitive actions
+- add DEX site example using Squeezer `2way-payment-system`
+
 #### Requirements
 
 - [Install node.js](http://nodejs.org/) version `>=6`
@@ -67,7 +75,7 @@ Create a quick project stub by using templates :
 
 | template | description |
 |-----|--------------|
-|api-nodejs | Generic API app template. |
+|Squeezer 2way Payment | https://github.com/SqueezerIO/squeezer-2way-payment |
 
 #### <a name="plugins"></a>Plugins
 
@@ -82,31 +90,40 @@ Extend or merge the Squeezer framework functionality with plugins
 
 | Project Name | Author | Demo |
 |-------------|------|---------|
-| **[Generic API](https://github.com/SqueezerIO/squeezer-hello-world)** <br/>  Generic API Hello World + Swagger API Docs | [Nick Chisiu](https://github.com/nickchisiu) | [demo](https://sqz5ca210f6823a384c14708-squeezerdeploymentbucket-1xxqffrhec7qv.s3.amazonaws.com/swagger-ui/index.html) |
+| **[Squeezer 2way Payment](https://github.com/SqueezerIO/squeezer-2way-payment)** <br/>  Squeezer Two Way Blockchain Payment System (inbound + outbound) | [Nick Chisiu](https://github.com/nickchisiu) | [video](https://example.org) |
 
 
 #### <a name="getting-started"></a>Getting started
 
 NOTE: **Windows** users should [enable symlinks](http://answers.perforce.com/articles/KB/3472/?q=enabling&l=en_US&fs=Search&pn=1) in order to avoid unwanted symbolic links errors .
 
-##### Serve
 
-|    | cmd | description  |
-|----|-----|--------------|
-| 1. | **npm i squeezer-cli -g**  |  Install Squeezer CLI |
-| 2. | **sqz create --project my-first-project --template api-nodejs**  |  Create a project |
-| 3. | **cd my-first-project**  |  Switch to the project's directory |
-| 4. | **sqz install**  |  Install dependencies |
-| 4. | **sqz compile**  |  Compile functions |
-| 5. | **sqz serve**  |  Development mode<br>**Live compiling** |
+## [Full Video tutorial](https://www.youtube.com/watch?v=2V3A_LTFu4E)
 
-##### Deploy
-
-|    | cmd | description  |
-|----|-----|--------------|
-| 1. | Configure provider & setup credentials  |   |
-| 2. | **sqz compile --cloud --stage dev**  |  Compile functions for cloud deployments |
-| 3. | **sqz deploy**  | Deploy your app into the cloud provider |
+1. Install Squeezer's command line tool globally on your machine using npm:
+`npm install squeezer-cli -g`
+2. Create a new project using the squeezer-2way-payment template: 
+`sqz create --project my-first-project --template https://github.com/SqueezerIO/squeezer-2way-payment`
+3. Switch to the project's directory:
+    `cd my-first-project`
+4. Initialize the local directory as a Git repository:
+    `git init`
+5. Add the files in your new local repository. This stages them for the first commit:
+    `git add .`
+6. Open up GitHub in a browser, navigate to the repositories page, and click on the `New` button, and enter the name of your project that you've created locally, in our case it will be my-first-project, then create the new repository.
+7. In Terminal, add the URL for the remote repository where your local repository will be pushed:
+    git remote add origin remote repository URL
+8. Commit the files that you've staged in your local repository:
+    `git commit -m "First commit"`
+9. Push the master branch to GitHub:
+    `git push -u origin master`
+10. Open up a new browser window and navigate to https://platform.squeezer.io, then login to the platform.
+11. Click on the import project button and import the project you've created from GitHub.
+12. In the first step of the import process, you have to select the repository from your list.
+13. In the second step of the import, you have to choose the provider and the stage name, dev or prod.
+14. After importing the project, the deployment will start automatically.
+15. When the deploy will be finished, we can check the logs by clicking on it.
+16. Scroll all the way down in the log window and copy the Swagger URL, then paste in a browser window.
 
 
 #### <a name="contributing"></a>Contributing
